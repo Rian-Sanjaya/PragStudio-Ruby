@@ -38,27 +38,22 @@ class Player
 	end
 end
 
-player1 = Player.new('moe')
-player2 = Player.new('larry', 60)
-player3 = Player.new('curly', 125)
-
-players = [player1, player2, player3]
-puts "There are #{players.size} players in the game."
-players.each do |player|
-	puts player
-end
-players.each { |p| puts p.health }
-
-players.each do |player|
+# if we want run example codes in this (class) file, but we don't want it to run when running the entire program
+# __FILE__ is a variable that hold the file name of this file (the currently source file), that is 'player.rb'
+# $0 or $PROGRAM_NAME is a variable that hold the currently running file, that is 'player.rb'
+if __FILE__ == $0
+	player = Player.new("moe")
+	puts player.name
+	puts player.health
+	player.woot
+	puts player.health
 	player.blam
-	player.woot
-	player.woot
-	puts player
-end
+	puts player.health
 
-players.pop
-player4 = Player.new("shemp", 90)
-players.push(player4)
-players.each do |player|
+	puts player.name 			# calling name attribute
+	player.name = 'lawrence' 	# setting name attribute
+	puts player.name
+	puts player.health
+	puts player.score
 	puts player
 end
