@@ -9,6 +9,7 @@ class Player
 	# 	@name
 	# end
 
+	# if we want to change (set0) the name outside of this class (the instance variable name can be change after the initialize)
 	# we want to capitalize the name so we write our setter method to overide the generated method by Ruby 
 	def name=(new_name)
 		@name = new_name.capitalize
