@@ -41,4 +41,26 @@ describe Player do
 
 		@player.health.should == (@initial_health - 10)
 	end
+
+	context 'with a health greater than 100' do
+		before do
+			@player = Player.new('larry', 150)
+		end
+
+		it 'is strong' do
+			#@player.strong?.should == true
+			#@player.strong?.should be_true
+			@player.should be_strong  # when you call be_strong, rspec calls the strong? method on the @player
+		end
+	end
+
+	context 'with a health of 100 or less' do
+		before do
+			@player = Player.new('larry', 100)
+		end
+
+		it 'is wimpy' do
+			@player.should_not be_strong
+		end
+	end
 end
