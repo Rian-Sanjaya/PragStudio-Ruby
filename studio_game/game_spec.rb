@@ -1,5 +1,5 @@
 require_relative 'game'
-require_relative 'die'
+require_relative 'game_turn'
 
 describe Game do
 	before do
@@ -12,7 +12,8 @@ describe Game do
 	end
 
 	it 'woots the player if a high number is rolled' do
-		Die.any_instance.stub(:roll).and_returns(5)
+		#GameTurn.any_instance.stub(:roll).and_returns(5)
+		GameTurn.stub(:roll).and_return(5)
 
 		@game.play
 
@@ -20,7 +21,7 @@ describe Game do
 	end
 
 	it 'skips the player if as medium number is rolled' do
-		Die.any_instance.stub(:roll).and_returns(3)
+		GameTurn.stub(:roll).and_return(3)
 
 		@game.play
 
@@ -28,7 +29,7 @@ describe Game do
 	end
 
 	it 'blam the player if a low number is rolled' do
-		Die.any_instance.stub(:roll).and_returns(1)
+		GameTurn.stub(:roll).and_return(1)
 
 		@game.play
 
