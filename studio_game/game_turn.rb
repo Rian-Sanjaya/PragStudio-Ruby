@@ -1,5 +1,5 @@
 require_relative 'die'
-require_relative 'player'
+# require_relative 'player'
 
 module GameTurn
 	def self.take_turn(player)
