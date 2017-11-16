@@ -1,12 +1,14 @@
 require_relative 'game'
 
-# 1. create 3 player objects
-# 2. create a game (object)
+# 1. create 3 player objects using Player class
+# 2. create a game (object) using Game class
 # 3. add the players to the game
 # 4. play the game
 #    a. print the number of player and game title
 #    b. print (introduce) each player name with their health and score
 #    c. each player get a turn to roll a die (result in random number), and base on the resulting number their's health is increased (woot), remained (skiped), or decreased (blam)
+# 5. the game played on specified number of round
+# 6. at the end it prints the strongest and wimpy players and the ordered score.
 
 player1 = Player.new('moe')
 player2 = Player.new('larry', 60)
