@@ -14,6 +14,10 @@ class Game
 		@players.push(player)
 	end
 
+	def total_points
+		@players.reduce(0) { |sum, player| sum + player.points }
+	end
+
 	def print_name_and_health(players)
 		players.each {|player| puts "#{player.name} (#{player.health})"}
 	end
@@ -27,6 +31,16 @@ class Game
 		print_name_and_health(strong_players)
 		puts "\n#{wimpy_players.size} wimpy players: "
 		print_name_and_health(wimpy_players)
+
+		@players.each do |player|
+			puts "\n#{player.name}'s point totals:"
+			player.each_found_treasure do |treasure|
+				puts "#{treasure.points} total #{treasure.name} points"
+			end
+			puts "#{player.points} grand total points"
+		end
+
+		puts "\n#{total_points} total point from treasures found"
 	end
 
 	def print_high_scores
@@ -48,6 +62,12 @@ class Game
 		end
 
 		1.upto(rounds) do |count|
+			# if a block is provided when calling the play method 
+			# if the yield (the block) return true stop (break) the game, otherwise continue
+			if block_given?
+				break if yield
+			end
+
 			puts "\nGame round #{count}: "
 
 			@players.each do |player|
