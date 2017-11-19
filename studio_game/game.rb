@@ -1,6 +1,7 @@
 require_relative 'player'
 require_relative 'game_turn'
 require_relative 'treasure_trove'
+require 'csv'
 
 class Game
 	attr_reader :title, :players
@@ -43,10 +44,37 @@ class Game
 		puts "\n#{total_points} total point from treasures found"
 	end
 
+	def high_score_entry(player)
+		formatted_name = player.name.ljust(20, '.')
+		"#{formatted_name} #{player.score}"
+	end
+
 	def print_high_scores
-		sorted_players = @players.sort {|a, b| b.score <=> a.score}
 		puts "\n#{@title} Hight Scores: "
-		sorted_players.each {|player| puts "#{player.name.ljust(20, '.')} #{player.score}"}
+		sorted_players = @players.sort {|a, b| b.score <=> a.score}
+		sorted_players.each do |player| 
+			puts high_score_entry(player)
+		end
+	end
+
+	def save_high_scores(to_file="high_scores.txt")
+		File.open(to_file, "w") do |file|
+			file.puts "#{@title} High Scores:"
+			sorted_players = @players.sort {|a, b| b.score <=> a.score}
+			sorted_players.each do |player|
+				file.puts high_score_entry(player)
+			end
+		end
+	end
+
+	def load_players(from_file)
+		# File.readlines(from_file).each do |line|
+		# 	add_player(Player.from_csv(line))
+		# end
+		CSV.foreach(from_file) do |row|
+			player = Player.new(row[0], row[1].to_i)
+			add_player(player)
+		end
 	end
 
 	def play(rounds)
@@ -63,7 +91,7 @@ class Game
 
 		1.upto(rounds) do |count|
 			# if a block is provided when calling the play method 
-			# if the yield (the block) return true stop (break) the game, otherwise continue
+			# and if the yield (the block) return true stop (break) the game, otherwise continue
 			if block_given?
 				break if yield
 			end

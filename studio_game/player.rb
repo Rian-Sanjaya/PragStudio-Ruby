@@ -60,6 +60,11 @@ class Player
 			yield Treasure.new(name, points)
 		end
 	end
+
+	def self.from_csv(string)
+		name, health = string.split(',')
+		Player.new(name, Integer(health))
+	end
 end
 
 # if we want run example codes in this (class) file, but we don't want it to run when running the entire program
