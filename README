@@ -1,0 +1,15 @@
+1. the game is started by typing in the command line with (optional) csv file containing the players and its' health
+2. it will ask for how many rounds the game played
+3. if input not a number, give a message and ask again, if inputed quit or exit print game statistics and high scores
+4. create a game (object) using Game class
+5. load and add players from csv file
+6. play the game
+   a. print the treasures with its points available in the game.
+   b. print the number of player and each player name with their health, point (from treasure found) and score (health + point)
+   c. each player get a turn to roll a die (result in random number), and base on the resulting number their's health is increased (woot), remained (skiped), or decreased (blam)
+   d. treasure is randomly found (adding point) for each player in each round
+   e. treasures found are saved in data collection (hash)
+   f. finally print each player with its health, point, and score
+7. after all rounds is played, it will ask again for no. of round to be played or quit to stop
+8. when quit, it prints statistics: the strongest and wimpy players, each player treasures and points, and high score.
+9. the high score statistics is save in a text file.
